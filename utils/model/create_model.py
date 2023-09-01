@@ -57,7 +57,3 @@ class Model:
 
         seq_model.save(self.model_name)
 
-
-
-
-
