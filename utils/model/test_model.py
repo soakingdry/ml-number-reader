@@ -21,7 +21,13 @@ class ModelTesting:
         self.dataset = keras.datasets.mnist 
         self.visual = visualize
 
-    def test(self):
+    def test(self) -> None:
+        """ 
+        Tests the model
+
+        :return: None
+        """
+
         mnist = self.dataset
         (x_train,y_train), (x_test,y_test) = mnist.load_data()
 
@@ -48,14 +54,17 @@ class ModelTesting:
         log.info(f"Score: {correct_val}/{len(predictions)} ({int(correct_val/ len(predictions) * 100)}%)")
 
 
-    def predict(self, arg):
-        raise NotImplementedError()
-    
+    def predict(self, data) -> int:
+        """ 
+        Predicts the number 
 
+        :param data:
+        :return: int
+        """
 
-        
-        
+        data = keras.utils.normalize(data,axis=1)
+        predictions = self.model.predict(data)
+        print(predictions)
+        return (np.argmax(predictions[0]))
 
-        
-    
 
