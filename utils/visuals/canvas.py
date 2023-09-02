@@ -134,8 +134,6 @@ class Canvas:
         prediction = self.model.predict(new_img)
 
         log.info(f"I predict this number is  a {prediction}",prefix="Model")
-        plt.imshow(new_img[0], cmap=plt.cm.binary)
-        plt.show()
 
         # saving the drawn images (could be used for future testing)
         if not self.config["save_drawn_images"]:

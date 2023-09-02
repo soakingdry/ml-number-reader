@@ -52,7 +52,7 @@ class ModelTesting:
                 plt.show()
             
 
-        log.info(f"Score: {correct_val}/{len(predictions)} ({int(correct_val/ len(predictions) * 100)}%)")
+        log.info(f"Score: {correct_val}/{len(predictions)} ({int(correct_val/ len(predictions) * 100)}% Accuracy)")
 
 
     def predict(self, data) -> int:
