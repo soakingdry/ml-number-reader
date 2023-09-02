@@ -14,6 +14,7 @@ class ModelTesting:
     def __init__(self,visualize = False) -> None:
         
         if not os.path.exists("nn.model/"):
+            log.warn("Model not detected. Creating model.","!")
             model = Model("nn.model",epochs=5)
             model.create()
         
