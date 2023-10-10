@@ -16,7 +16,6 @@ class Model:
 
         self.model_name = model_name
         self.dataset = keras.datasets.mnist 
-        self.neurons = neurons
         self.epochs = epochs
    
     def gpu_check(self):
@@ -40,17 +39,23 @@ class Model:
         x_test = keras.utils.normalize(x_test,axis=1)
         x_train = keras.utils.normalize(x_train,axis=1)
         
-        seq_model = keras.models.Sequential([
-            keras.layers.Flatten(input_shape=(28,28)),   
-            keras.layers.Dense(self.neurons,activation=tf.nn.relu),  #  Hidden Layer
-            keras.layers.Dense(self.neurons, activation=tf.nn.relu), #  Hidden Layer
+        seq_model = keras.models.Sequential([  
+            keras.layers.Input(shape=(28,28,1)),
+
+            keras.layers.Conv2D(filters=32,kernel_size = (3,3), activation = tf.nn.relu),
+            keras.layers.MaxPooling2D((2,2)),
+            keras.layers.Conv2D(filters=32,kernel_size = (3,3), activation = tf.nn.relu),
+            keras.layers.MaxPooling2D((2,2)),
+
+            keras.layers.Flatten(),   
+            keras.layers.Dense(64, activation=tf.nn.relu), #  Hidden Layer
             keras.layers.Dense(10, activation=tf.nn.softmax)
         ])
         self.model = seq_model
         seq_model.compile(
             optimizer="adam",
             metrics=["accuracy"],
-            loss=["sparse_categorical_crossentropy"]
+            loss=tf.losses.SparseCategoricalCrossEntropy()
         )
 
         seq_model.fit(x=x_train,y=y_train,epochs=self.epochs)

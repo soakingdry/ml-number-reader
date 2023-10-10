@@ -1,4 +1,4 @@
-# [WIP] Number Recogition ML Model
+#  Number Recogition ML Model
 
 This program is a tensorflow neural network which is  trained of from the MNIST dataset to recognise written numbers from 0 - 10. This is my first time project which uses neural networks so please leave any useful suggestions.
 
@@ -40,3 +40,4 @@ python3 main.py
 
 ## Other
 **If you want to "recreate" the model, delete the "nn.model" file and rerun the program.**
+
