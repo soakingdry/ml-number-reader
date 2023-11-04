@@ -38,6 +38,3 @@ python3 main.py
 | `Right Click` | Eraser 
 | `Enter` | Predict Number
 
-## Other
-**If you want to recreate the model, delete the "cnn_mnist_model.keras" file and rerun the program.**
-

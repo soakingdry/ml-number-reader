@@ -14,10 +14,10 @@ class ModelTesting:
 
     def __init__(self, visualize=False) -> None:
 
-        model_name = "cnn_mnist_model.keras"
+        model_name = "saved_models/cnn_mnist_model.keras"
         if not os.path.isfile(model_name):
             log.warn("Model not detected. Creating model.", "!")
-            model = Model(model_name, epochs=6)
+            model = Model(model_name, epochs=5)
             model.create()
 
         self.model = keras.models.load_model(model_name)
