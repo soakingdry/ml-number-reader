@@ -1,11 +1,11 @@
-#  Number Recogition ML Model
+#  AI Number Reader
 
-This program is a tensorflow neural network which is  trained of from the MNIST dataset to recognise written numbers from 0 - 10. This is my first time project which uses neural networks so please leave any useful suggestions.
+This program uses a neural network made with tensorflow which is  trained of from the MNIST dataset to recognize digits you've drawn that are from 0-9.
+<img src="canvas_eg.png">
 
 ### Notice ⚠️ 
 The program is trained from the MNIST dataset so if your numbers are drawn differently, the program *may* not recognize it.For best results, try draw the number in the middle and maybe you could slightly emphasize redeeming features of the number(e.g if you draw a weird 7, it could mistake it for a 4.) **OR** you could draw a bunch of numbers, save them (by settings **save_drawn_images** to `true` ) and train a new model on the **saved images**.
 
-You could also tweak the amount of hidden layers,epochs and neurons.
 
 ## Installation
 **NOTICE: This guide assumes you have [python](https://www.python.org/) installed.**
@@ -39,5 +39,5 @@ python3 main.py
 | `Enter` | Predict Number
 
 ## Other
-**If you want to "recreate" the model, delete the "nn.model" file and rerun the program.**
+**If you want to recreate the model, delete the "cnn_mnist_model.keras" file and rerun the program.**
 

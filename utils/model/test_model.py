@@ -1,25 +1,27 @@
-import os 
+import os
 
-import tensorflow as tf 
+import tensorflow as tf
 import matplotlib.pyplot as plt
-import numpy as np 
+import numpy as np
 
-from tensorflow import keras 
+from tensorflow import keras
 from utils.model.create_model import Model
 from utils import log
+
 
 class ModelTesting:
     """ class for testing the model """
 
-    def __init__(self,visualize = False) -> None:
-        
-        if not os.path.exists("nn.model/"):
-            log.warn("Model not detected. Creating model.","!")
-            model = Model("nn.model",epochs=5)
+    def __init__(self, visualize=False) -> None:
+
+        model_name = "cnn_mnist_model.keras"
+        if not os.path.isfile(model_name):
+            log.warn("Model not detected. Creating model.", "!")
+            model = Model(model_name, epochs=6)
             model.create()
-        
-        self.model = keras.models.load_model("nn.model")
-        self.dataset = keras.datasets.mnist 
+
+        self.model = keras.models.load_model(model_name)
+        self.dataset = keras.datasets.mnist
         self.visual = visualize
 
     def test(self) -> None:
@@ -30,11 +32,11 @@ class ModelTesting:
         """
 
         mnist = self.dataset
-        (x_train,y_train), (x_test,y_test) = mnist.load_data()
+        (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-        x_test = keras.utils.normalize(x_test,axis=1)
+        x_test = keras.utils.normalize(x_test, axis=1)
         predictions = self.model.predict([x_test])
-        
+
         correct_val = 0
         inc = 0
         for x in range(len(predictions)):
@@ -44,16 +46,14 @@ class ModelTesting:
                 log.success(content)
                 correct_val += 1
 
-            else:                
+            else:
                 log.error(content)
-            
+
             if self.visual:
                 plt.imshow(x_test[x], cmap=plt.cm.binary)
                 plt.show()
-            
 
-        log.info(f"Score: {correct_val}/{len(predictions)} ({int(correct_val/ len(predictions) * 100)}% Accuracy)")
-
+        log.info(f"Score: {correct_val}/{len(predictions)} ({int(correct_val / len(predictions) * 100)}% Accuracy)")
 
     def predict(self, data) -> int:
         """ 
@@ -63,9 +63,7 @@ class ModelTesting:
         :return: int
         """
 
-        data = keras.utils.normalize(data,axis=1)
+        data = keras.utils.normalize(data, axis=1)
         predictions = self.model.predict(data)
         print(predictions)
-        return (np.argmax(predictions[0]))
-
-
+        return np.argmax(predictions[0])

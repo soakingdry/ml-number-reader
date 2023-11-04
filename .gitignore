@@ -1,4 +1,4 @@
-*.model
+*.keras
 *.tmp.py
 tmp/*
 # Byte-compiled / optimized / DLL files
